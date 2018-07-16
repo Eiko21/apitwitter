@@ -8,6 +8,10 @@ app.use(express.json());
 
 app.use(morgan('combined'));
 
+app.engine ('pug', require ('pug') .__express);
+app.set('views', './views');
+app.set('view engine', 'pug');
+
 const usersRouter = require("./api/users");
 app.use("/api/users", usersRouter);
 

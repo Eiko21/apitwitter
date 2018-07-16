@@ -22,12 +22,12 @@ function create(req, res){
 
 function getAll(req, res){
     users.find().then(response => {
-        return res.json(response);
-    }).catch(err => {res.status(500).json(err);})
+        return res.render('users/users', {users : response});
+    }).catch(err => {res.render('error', {e : err});})
 }
 
 function getById(req, res){
-    users.find({username: req.params.id}).then(response => {
+    users.findOne({username: req.params.id}).then(response => {
         return res.json(response);
     }).catch(err => {res.status(500).json(err);})
 }
